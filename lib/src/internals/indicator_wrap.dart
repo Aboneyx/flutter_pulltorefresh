@@ -35,10 +35,10 @@ abstract class RefreshIndicator extends StatefulWidget {
 
   const RefreshIndicator(
       {Key? key,
-      this.height: 60.0,
-      this.offset: 0.0,
-      this.completeDuration: const Duration(milliseconds: 500),
-      this.refreshStyle: RefreshStyle.Follow})
+      this.height = 60.0,
+      this.offset = 0.0,
+      this.completeDuration = const Duration(milliseconds: 500),
+      this.refreshStyle = RefreshStyle.Follow})
       : super(key: key);
 }
 
@@ -56,8 +56,8 @@ abstract class LoadIndicator extends StatefulWidget {
   const LoadIndicator(
       {Key? key,
       this.onClick,
-      this.loadStyle: LoadStyle.ShowAlways,
-      this.height: 60.0})
+      this.loadStyle = LoadStyle.ShowAlways,
+      this.height = 60.0})
       : super(key: key);
 }
 
@@ -150,7 +150,6 @@ abstract class RefreshIndicatorState<T extends RefreshIndicator>
 
   @override
   void _handleOffsetChange() {
-    // TODO: implement _handleOffsetChange
     super._handleOffsetChange();
     final double overscrollPast = _calculateScrollOffset();
     onOffsetChange(overscrollPast);
@@ -257,7 +256,7 @@ abstract class RefreshIndicatorState<T extends RefreshIndicator>
           the _onOffsetChange didn't callback,it will keep failed or success state.
           2. As FrontStyle,when user dragging in 0~100 in refreshing state,it should be reset after the state change
           */
-        WidgetsBinding.instance!.addPostFrameCallback((_) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
           if (!mounted) {
             return;
           }
@@ -287,7 +286,7 @@ abstract class RefreshIndicatorState<T extends RefreshIndicator>
     } else if (mode == RefreshStatus.twoLevelOpening) {
       floating = true;
       refresherState!.setCanDrag(false);
-      WidgetsBinding.instance!.addPostFrameCallback((_) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
         activity!.resetActivity();
         _position!
@@ -333,7 +332,7 @@ abstract class RefreshIndicatorState<T extends RefreshIndicator>
         child: RotatedBox(
           child: buildContent(context, mode),
           quarterTurns: needReverseAll() &&
-                  Scrollable.of(context)!.axisDirection == AxisDirection.up
+                  Scrollable.of(context).axisDirection == AxisDirection.up
               ? 10
               : 0,
         ),
@@ -389,8 +388,8 @@ abstract class LoadIndicatorState<T extends LoadIndicator> extends State<T>
       }
 
       // this line for patch bug temporary:indicator disappears fastly when load more complete
-      if (mounted) Scrollable.of(context)!.position.correctBy(0.00001);
-      WidgetsBinding.instance!.addPostFrameCallback((_) {
+      if (mounted) Scrollable.of(context).position.correctBy(0.00001);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted && _position?.outOfRange == true) {
           activity!.delegate.goBallistic(0);
         }
@@ -522,21 +521,18 @@ abstract class LoadIndicatorState<T extends LoadIndicator> extends State<T>
 
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     _lastMode = mode;
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _position?.isScrollingNotifier.removeListener(_listenScrollEnd);
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return SliverLoading(
         hideWhenNotFull: configuration!.hideFooterWhenNotFull,
         floating: widget.loadStyle == LoadStyle.ShowAlways
@@ -624,7 +620,7 @@ mixin IndicatorStateMixin<T extends StatefulWidget, V> on State<T> {
     RefreshNotifier<V>? newMode = V == RefreshStatus
         ? refresher!.controller.headerMode as RefreshNotifier<V>?
         : refresher!.controller.footerMode as RefreshNotifier<V>?;
-    final ScrollPosition newPosition = Scrollable.of(context)!.position;
+    final ScrollPosition newPosition = Scrollable.of(context).position;
     if (newMode != _mode) {
       _mode?.removeListener(_handleModeChange);
       _mode = newMode;
@@ -640,7 +636,6 @@ mixin IndicatorStateMixin<T extends StatefulWidget, V> on State<T> {
 
   @override
   void initState() {
-    // TODO: implement initState
     if (V == RefreshStatus) {
       SmartRefresher.of(context)?.controller.headerMode?.value =
           RefreshStatus.idle;
@@ -650,7 +645,6 @@ mixin IndicatorStateMixin<T extends StatefulWidget, V> on State<T> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     //1.3.7: here need to careful after add asSliver builder
     disposeListener();
     super.dispose();
@@ -658,7 +652,6 @@ mixin IndicatorStateMixin<T extends StatefulWidget, V> on State<T> {
 
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
     _updateListener();
     super.didChangeDependencies();
   }

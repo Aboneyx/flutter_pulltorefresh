@@ -4,13 +4,9 @@
  * Time:  2019-08-02 19:20
  */
 
-import 'package:flutter/animation.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart'
     hide RefreshIndicator, RefreshIndicatorState;
-import 'package:pull_to_refresh/src/internals/indicator_wrap.dart';
 import 'dart:math' as math;
 import 'package:flutter/physics.dart';
 
@@ -128,7 +124,6 @@ class _BezierHeaderState extends RefreshIndicatorState<BezierHeader>
 
   @override
   void resetValue() {
-    // TODO: implement resetValue
     _bezierDismissCtl.reset();
     _beizerBounceCtl.value = 0;
     if (widget.onResetValue != null) {
@@ -139,7 +134,6 @@ class _BezierHeaderState extends RefreshIndicatorState<BezierHeader>
 
   @override
   Widget buildContent(BuildContext context, RefreshStatus? mode) {
-    // TODO: implement buildContent
 
     return AnimatedBuilder(
       builder: (_, __) {
