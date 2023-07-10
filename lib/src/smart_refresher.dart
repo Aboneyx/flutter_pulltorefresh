@@ -600,11 +600,12 @@ class RefreshController {
   }
 
   /// make the header enter refreshing state,and callback onRefresh
-  Future<void>? requestRefresh(
-      {bool needMove = true,
-      bool needCallback = true,
-      Duration duration = const Duration(milliseconds: 500),
-      Curve curve = Curves.linear}) {
+  Future<void>? requestRefresh({
+    bool needMove = true,
+    bool needCallback = true,
+    Duration duration = const Duration(milliseconds: 500),
+    Curve curve = Curves.linear,
+  }) {
     assert(position != null, 'Try not to call requestRefresh() before build,please call after the ui was rendered');
     if (isRefresh) return Future.value();
     StatefulElement? indicatorElement = _findIndicator(position!.context.storageContext, RefreshIndicator);
@@ -827,37 +828,37 @@ class RefreshConfiguration extends InheritedWidget {
   /// toggle of  loadmore vibrate
   final bool enableLoadMoreVibrate;
 
-  RefreshConfiguration(
-      {Key? key,
-      required this.child,
-      this.headerBuilder,
-      this.footerBuilder,
-      this.dragSpeedRatio = 1.0,
-      this.shouldFooterFollowWhenNotFull,
-      this.enableScrollWhenTwoLevel = true,
-      this.enableLoadingWhenNoData = false,
-      this.enableBallisticRefresh = false,
-      this.springDescription = const SpringDescription(
-        mass: 2.2,
-        stiffness: 150,
-        damping: 16,
-      ),
-      this.enableScrollWhenRefreshCompleted = false,
-      this.enableLoadingWhenFailed = true,
-      this.twiceTriggerDistance = 150.0,
-      this.closeTwoLevelDistance = 80.0,
-      this.skipCanRefresh = false,
-      this.maxOverScrollExtent,
-      this.enableBallisticLoad = true,
-      this.maxUnderScrollExtent,
-      this.headerTriggerDistance = 80.0,
-      this.footerTriggerDistance = 15.0,
-      this.hideFooterWhenNotFull = false,
-      this.enableRefreshVibrate = false,
-      this.enableLoadMoreVibrate = false,
-      this.topHitBoundary,
-      this.bottomHitBoundary})
-      : assert(headerTriggerDistance > 0),
+  RefreshConfiguration({
+    Key? key,
+    required this.child,
+    this.headerBuilder,
+    this.footerBuilder,
+    this.dragSpeedRatio = 1.0,
+    this.shouldFooterFollowWhenNotFull,
+    this.enableScrollWhenTwoLevel = true,
+    this.enableLoadingWhenNoData = false,
+    this.enableBallisticRefresh = false,
+    this.springDescription = const SpringDescription(
+      mass: 2.2,
+      stiffness: 150,
+      damping: 16,
+    ),
+    this.enableScrollWhenRefreshCompleted = false,
+    this.enableLoadingWhenFailed = true,
+    this.twiceTriggerDistance = 150.0,
+    this.closeTwoLevelDistance = 80.0,
+    this.skipCanRefresh = false,
+    this.maxOverScrollExtent,
+    this.enableBallisticLoad = true,
+    this.maxUnderScrollExtent,
+    this.headerTriggerDistance = 80.0,
+    this.footerTriggerDistance = 15.0,
+    this.hideFooterWhenNotFull = false,
+    this.enableRefreshVibrate = false,
+    this.enableLoadMoreVibrate = false,
+    this.topHitBoundary,
+    this.bottomHitBoundary,
+  })  : assert(headerTriggerDistance > 0),
         assert(twiceTriggerDistance > 0),
         assert(closeTwoLevelDistance > 0),
         assert(dragSpeedRatio > 0),

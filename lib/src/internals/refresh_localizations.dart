@@ -79,6 +79,7 @@ class RefreshLocalizations {
     'sv': SvRefreshString(),
     'pt': PtRefreshString(),
     'ko': KrRefreshString(),
+    'kk': KzRefreshString(),
   };
 
   RefreshString? get currentLocalization {
@@ -100,7 +101,22 @@ class RefreshLocalizationsDelegate extends LocalizationsDelegate<RefreshLocaliza
 
   @override
   bool isSupported(Locale locale) {
-    return ['en', 'zh', 'fr', 'ru', 'uk', 'ja', 'it', 'de', 'ko', 'pt', 'sv', 'nl', 'es'].contains(locale.languageCode);
+    return [
+      'en',
+      'zh',
+      'fr',
+      'ru',
+      'uk',
+      'ja',
+      'it',
+      'de',
+      'ko',
+      'pt',
+      'sv',
+      'nl',
+      'es',
+      'kk',
+    ].contains(locale.languageCode);
   }
 
   @override
@@ -292,6 +308,42 @@ class RuRefreshString implements RefreshString {
 
   @override
   String? refreshingText = "Обновление…";
+}
+
+/// Kazakh
+class KzRefreshString implements RefreshString {
+  @override
+  String? canLoadingText = "Деректерді жүктеу үшін жоғары қарай тартыңыз";
+
+  @override
+  String? canRefreshText = "Жаңарту үшін босатыңыз";
+
+  @override
+  String? canTwoLevelText = "Екінші деңгейге өту үшін босатыңыз";
+
+  @override
+  String? idleLoadingText = "Көбірек жүктеу үшін жоғары қарай тартыңыз";
+
+  @override
+  String? idleRefreshText = "Жаңарту үшін төмен қарай тартыңыз";
+
+  @override
+  String? loadFailedText = "Жүктеу қатесі";
+
+  @override
+  String? loadingText = "Жүктелуде…";
+
+  @override
+  String? noMoreText = "Басқа деректер жоқ";
+
+  @override
+  String? refreshCompleteText = "Жаңарту аяқталды";
+
+  @override
+  String? refreshFailedText = "Жаңарту жасалмады";
+
+  @override
+  String? refreshingText = "Жаңарту…";
 }
 
 // Ukrainian
