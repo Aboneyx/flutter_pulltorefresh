@@ -47,6 +47,8 @@ class MaterialClassicHeader extends RefreshIndicator {
 
   @override
   State<StatefulWidget> createState() {
+    // TODO: implement createState
+
     return _MaterialClassicHeaderState();
   }
 }
@@ -61,13 +63,9 @@ class _MaterialClassicHeaderState extends RefreshIndicatorState<MaterialClassicH
 
   @override
   void initState() {
+    // TODO: implement initState
     _valueAni = AnimationController(
-      vsync: this,
-      value: 0.0,
-      lowerBound: 0.0,
-      upperBound: 1.0,
-      duration: Duration(milliseconds: 500),
-    );
+        vsync: this, value: 0.0, lowerBound: 0.0, upperBound: 1.0, duration: Duration(milliseconds: 500));
     _valueAni.addListener(() {
       // frequently setState will decline the performance
       if (mounted && _position!.pixels <= 0) setState(() {});
@@ -82,12 +80,14 @@ class _MaterialClassicHeaderState extends RefreshIndicatorState<MaterialClassicH
 
   @override
   void didUpdateWidget(covariant MaterialClassicHeader oldWidget) {
-    _position = Scrollable.of(context).position;
+    // TODO: implement didUpdateWidget
+    _position = Scrollable.of(context)!.position;
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   Widget buildContent(BuildContext context, RefreshStatus? mode) {
+    // TODO: implement buildContent
     return _buildIndicator(widget.backgroundColor ?? Colors.white);
   }
 
@@ -98,7 +98,7 @@ class _MaterialClassicHeaderState extends RefreshIndicatorState<MaterialClassicH
         child: Align(
           alignment: Alignment.topCenter,
           child: RefreshProgressIndicator(
-            semanticsLabel: widget.semanticsLabel ?? MaterialLocalizations.of(context).refreshIndicatorSemanticLabel,
+            semanticsLabel: widget.semanticsLabel ?? MaterialLocalizations?.of(context).refreshIndicatorSemanticLabel,
             semanticsValue: widget.semanticsValue,
             value: floating ? null : _valueAni.value,
             valueColor: _valueColor,
@@ -112,6 +112,7 @@ class _MaterialClassicHeaderState extends RefreshIndicatorState<MaterialClassicH
 
   @override
   void onOffsetChange(double offset) {
+    // TODO: implement onOffsetChange
     if (!floating) {
       _valueAni.value = offset / configuration!.headerTriggerDistance;
       _positionController.value = offset / configuration!.headerTriggerDistance;
@@ -120,6 +121,7 @@ class _MaterialClassicHeaderState extends RefreshIndicatorState<MaterialClassicH
 
   @override
   void onModeChange(RefreshStatus? mode) {
+    // TODO: implement onModeChange
     if (mode == RefreshStatus.refreshing) {
       _positionController.value = widget.distance / widget.height;
       _scaleFactor.value = 1;
@@ -139,7 +141,7 @@ class _MaterialClassicHeaderState extends RefreshIndicatorState<MaterialClassicH
   @override
   void didChangeDependencies() {
     final ThemeData theme = Theme.of(context);
-    _position = Scrollable.of(context).position;
+    _position = Scrollable.of(context)!.position;
     _valueColor = _positionController.drive(
       ColorTween(
         begin: (widget.color ?? theme.primaryColor).withOpacity(0.0),
