@@ -119,10 +119,12 @@ class RenderSliverRefresh extends RenderSliverSingleBoxAdapter {
 
   @override
   void performResize() {
+    // TODO: implement performResize
     super.performResize();
   }
 
   @override
+  // TODO: implement centerOffsetAdjustment
   double get centerOffsetAdjustment {
     if (refreshStyle == RefreshStyle.Front) {
       final RenderViewportBase renderViewport =
@@ -180,7 +182,7 @@ class RenderSliverRefresh extends RenderSliverSingleBoxAdapter {
     if (_updateFlag) {
       // ignore_for_file: INVALID_USE_OF_PROTECTED_MEMBER
       // ignore_for_file: INVALID_USE_OF_VISIBLE_FOR_TESTING_MEMBER
-      Scrollable.of(context).position.activity!.applyNewDimensions();
+      Scrollable.of(context)!.position.activity!.applyNewDimensions();
       _updateFlag = false;
     }
     // The new layout extent this sliver should now have.
