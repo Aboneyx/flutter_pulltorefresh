@@ -5,7 +5,7 @@
  */
 
 import 'package:flutter/material.dart' hide RefreshIndicator, RefreshIndicatorState;
-import '../../pull_to_refresh.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
@@ -44,11 +44,11 @@ class ClassicHeader extends RefreshIndicator {
 
   const ClassicHeader({
     Key? key,
-    RefreshStyle refreshStyle = RefreshStyle.Follow,
-    double height = 60.0,
-    Duration completeDuration = const Duration(milliseconds: 600),
+    RefreshStyle refreshStyle: RefreshStyle.Follow,
+    double height: 60.0,
+    Duration completeDuration: const Duration(milliseconds: 600),
     this.outerBuilder,
-    this.textStyle = const TextStyle(color: Colors.grey),
+    this.textStyle: const TextStyle(color: Colors.grey),
     this.releaseText,
     this.refreshingText,
     this.canTwoLevelIcon,
@@ -57,11 +57,11 @@ class ClassicHeader extends RefreshIndicator {
     this.completeText,
     this.failedText,
     this.idleText,
-    this.iconPos = IconPosition.left,
-    this.spacing = 15.0,
+    this.iconPos: IconPosition.left,
+    this.spacing: 15.0,
     this.refreshingIcon,
-    this.failedIcon = const Icon(Icons.error, color: Colors.grey),
-    this.completeIcon = const Icon(Icons.done, color: Colors.grey),
+    this.failedIcon: const Icon(Icons.error, color: Colors.grey),
+    this.completeIcon: const Icon(Icons.done, color: Colors.grey),
     this.idleIcon = const Icon(Icons.arrow_downward, color: Colors.grey),
     this.releaseIcon = const Icon(Icons.refresh, color: Colors.grey),
   }) : super(
@@ -73,6 +73,7 @@ class ClassicHeader extends RefreshIndicator {
 
   @override
   State createState() {
+    // TODO: implement createState
     return _ClassicHeaderState();
   }
 }
@@ -125,11 +126,13 @@ class _ClassicHeaderState extends RefreshIndicatorState<ClassicHeader> {
 
   @override
   bool needReverseAll() {
+    // TODO: implement needReverseAll
     return false;
   }
 
   @override
   Widget buildContent(BuildContext context, RefreshStatus? mode) {
+    // TODO: implement buildContent
     Widget textWidget = _buildText(mode);
     Widget iconWidget = _buildIcon(mode);
     List<Widget> children = <Widget>[iconWidget, textWidget];
@@ -188,22 +191,22 @@ class ClassicFooter extends LoadIndicator {
   const ClassicFooter({
     Key? key,
     VoidCallback? onClick,
-    LoadStyle loadStyle = LoadStyle.ShowAlways,
-    double height = 60.0,
+    LoadStyle loadStyle: LoadStyle.ShowAlways,
+    double height: 60.0,
     this.outerBuilder,
-    this.textStyle = const TextStyle(color: Colors.grey),
+    this.textStyle: const TextStyle(color: Colors.grey),
     this.loadingText,
     this.noDataText,
     this.noMoreIcon,
     this.idleText,
     this.failedText,
     this.canLoadingText,
-    this.failedIcon = const Icon(Icons.error, color: Colors.grey),
-    this.iconPos = IconPosition.left,
-    this.spacing = 15.0,
-    this.completeDuration = const Duration(milliseconds: 300),
+    this.failedIcon: const Icon(Icons.error, color: Colors.grey),
+    this.iconPos: IconPosition.left,
+    this.spacing: 15.0,
+    this.completeDuration: const Duration(milliseconds: 300),
     this.loadingIcon,
-    this.canLoadingIcon = const Icon(Icons.autorenew, color: Colors.grey),
+    this.canLoadingIcon: const Icon(Icons.autorenew, color: Colors.grey),
     this.idleIcon = const Icon(Icons.arrow_upward, color: Colors.grey),
   }) : super(
           key: key,
@@ -214,6 +217,8 @@ class ClassicFooter extends LoadIndicator {
 
   @override
   State<StatefulWidget> createState() {
+    // TODO: implement createState
+
     return _ClassicFooterState();
   }
 }
@@ -256,11 +261,13 @@ class _ClassicFooterState extends LoadIndicatorState<ClassicFooter> {
 
   @override
   Future endLoading() {
+    // TODO: implement endLoading
     return Future.delayed(widget.completeDuration);
   }
 
   @override
   Widget buildContent(BuildContext context, LoadStatus? mode) {
+    // TODO: implement buildChild
     Widget textWidget = _buildText(mode);
     Widget iconWidget = _buildIcon(mode);
     List<Widget> children = <Widget>[iconWidget, textWidget];

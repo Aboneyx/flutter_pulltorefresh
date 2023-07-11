@@ -4,10 +4,10 @@
  * Time:  2019-08-02 19:20
  */
 
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:flutter/material.dart' hide RefreshIndicator, RefreshIndicatorState;
 import 'dart:math' as math;
 import 'package:flutter/physics.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 enum BezierDismissType { None, RectSpread, ScaleToCenter }
 
@@ -32,21 +32,22 @@ class BezierHeader extends RefreshIndicator {
   // container height(not contain bezier)
   final double rectHeight;
 
-  BezierHeader({
-    this.child = const Text(""),
-    this.onOffsetChange,
-    this.onModeChange,
-    this.readyRefresh,
-    this.enableChildOverflow = false,
-    this.endRefresh,
-    this.onResetValue,
-    this.dismissType = BezierDismissType.RectSpread,
-    this.rectHeight = 70,
-    this.bezierColor,
-  }) : super(refreshStyle: RefreshStyle.UnFollow, height: rectHeight);
+  BezierHeader(
+      {this.child: const Text(""),
+      this.onOffsetChange,
+      this.onModeChange,
+      this.readyRefresh,
+      this.enableChildOverflow: false,
+      this.endRefresh,
+      this.onResetValue,
+      this.dismissType: BezierDismissType.RectSpread,
+      this.rectHeight: 70,
+      this.bezierColor})
+      : super(refreshStyle: RefreshStyle.UnFollow, height: rectHeight);
 
   @override
   State<StatefulWidget> createState() {
+    // TODO: implement createState
     return _BezierHeaderState();
   }
 }
@@ -56,6 +57,7 @@ class _BezierHeaderState extends RefreshIndicatorState<BezierHeader> with Ticker
 
   @override
   void initState() {
+    // TODO: implement initState
     _beizerBounceCtl = AnimationController(vsync: this, lowerBound: -10, upperBound: 50, value: 0);
     _bezierDismissCtl = AnimationController(vsync: this);
     super.initState();
@@ -63,6 +65,7 @@ class _BezierHeaderState extends RefreshIndicatorState<BezierHeader> with Ticker
 
   @override
   void onOffsetChange(double offset) {
+    // TODO: implement onOffsetChange
     if (widget.onOffsetChange != null) {
       widget.onOffsetChange!(offset);
     }
@@ -71,6 +74,7 @@ class _BezierHeaderState extends RefreshIndicatorState<BezierHeader> with Ticker
 
   @override
   void onModeChange(RefreshStatus? mode) {
+    // TODO: implement onModeChange
     if (widget.onModeChange != null) {
       widget.onModeChange!(mode);
     }
@@ -79,6 +83,7 @@ class _BezierHeaderState extends RefreshIndicatorState<BezierHeader> with Ticker
 
   @override
   void dispose() {
+    // TODO: implement dispose
     _bezierDismissCtl.dispose();
     _beizerBounceCtl.dispose();
     super.dispose();
@@ -86,6 +91,7 @@ class _BezierHeaderState extends RefreshIndicatorState<BezierHeader> with Ticker
 
   @override
   Future<void> readyToRefresh() {
+    // TODO: implement readyToRefresh
     final Simulation simulation = SpringSimulation(
         SpringDescription(
           mass: 3.4,
@@ -104,6 +110,7 @@ class _BezierHeaderState extends RefreshIndicatorState<BezierHeader> with Ticker
 
   @override
   Future<void> endRefresh() async {
+    // TODO: implement endRefresh
     if (widget.endRefresh != null) {
       await widget.endRefresh!();
     }
@@ -112,6 +119,7 @@ class _BezierHeaderState extends RefreshIndicatorState<BezierHeader> with Ticker
 
   @override
   void resetValue() {
+    // TODO: implement resetValue
     _bezierDismissCtl.reset();
     _beizerBounceCtl.value = 0;
     if (widget.onResetValue != null) {
@@ -122,6 +130,8 @@ class _BezierHeaderState extends RefreshIndicatorState<BezierHeader> with Ticker
 
   @override
   Widget buildContent(BuildContext context, RefreshStatus? mode) {
+    // TODO: implement buildContent
+
     return AnimatedBuilder(
       builder: (_, __) {
         return Stack(
@@ -277,12 +287,12 @@ class BezierCircleHeader extends StatefulWidget {
 
   BezierCircleHeader(
       {this.bezierColor,
-      this.rectHeight = 70,
-      this.circleColor = Colors.white,
-      this.enableChildOverflow = false,
-      this.dismissType = BezierDismissType.RectSpread,
-      this.circleType = BezierCircleType.Progress,
-      this.circleRadius = 12});
+      this.rectHeight: 70,
+      this.circleColor: Colors.white,
+      this.enableChildOverflow: false,
+      this.dismissType: BezierDismissType.RectSpread,
+      this.circleType: BezierCircleType.Progress,
+      this.circleRadius: 12});
 
   @override
   State<StatefulWidget> createState() {
